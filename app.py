@@ -29,7 +29,7 @@ def gera_response(status, nome_do_conteudo, conteudo, mensagem=False):
 
     return Response(json.dumps(body), status=status, mimetype="application/json")
 
-# Selecionar Tudo
+# Select ALL
 @app.route("/usuarios", methods=["GET"])
 def seleciona_usuarios():
     usuarios_objetos = Usuario.query.all()
@@ -37,7 +37,7 @@ def seleciona_usuarios():
 
     return gera_response(200, "usuarios", usuarios_json)
 
-# Selecionar Individual
+# Select Simple
 @app.route("/usuario/<id>", methods=["GET"])
 def seleciona_usuario(id):
     usuario_objeto = Usuario.query.filter_by(id=id).first()
@@ -45,7 +45,7 @@ def seleciona_usuario(id):
 
     return gera_response(200, "usuario", usuario_json)
 
-# Cadastrar
+# ADD
 @app.route("/usuario", methods=["POST"])
 def cria_usuario():
     body = request.get_json()
@@ -59,7 +59,7 @@ def cria_usuario():
         print('Erro', e)
         return gera_response(400, "usuario", {}, "Erro ao cadastrar")
 
-# Atualizar
+# Update
 @app.route("/usuario/<id>", methods=["PUT"])
 def atualiza_usuario(id):
     usuario_objeto = Usuario.query.filter_by(id=id).first()
@@ -78,3 +78,17 @@ def atualiza_usuario(id):
         print('Erro', e)
         return gera_response(400, "usuario", {}, "Erro ao atualizar")
 
+# Delete
+@app.route("/usuario/<id>", methods=["DELETE"])
+def deleta_usuario(id):
+    usuario_objeto = Usuario.query.filter_by(id=id).first()
+
+    try:
+        db.session.delete(usuario_objeto)
+        db.session.commit()
+        return gera_response(200, "usuario", usuario_objeto.to_json(), "Deletado com sucesso")
+    except Exception as e:
+        print('Erro', e)
+        return gera_response(400, "usuario", {}, "Erro ao deletar")
+
+app.run()

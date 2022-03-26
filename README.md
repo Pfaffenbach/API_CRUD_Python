@@ -12,11 +12,9 @@
  pip install flask_sqlalchemy
  pip install mysql-connector-python
  pip install mysqlclient
- 
  ``
  2. Após esses comando pode ser executado por meio da IDE Visual Strdio Code pressionando F5 ou por meio do terminal de comando digitando:
  
  ``
  python .\app.py
- 
  ``

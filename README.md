@@ -1,7 +1,7 @@
 📜 Sobre o projeto:
 
- API REST com CRUD completo com acesso ao banco de dados MySQL Workbench utlizando Python.
- Esse projeto foi feito para participar do processo seletivo da empresa 4Intelligence.
+ API REST utilizando Flask, api faz CRUD completo com acesso ao banco de dados MySQL Workbench utlizando  a linguagem Python.
+ Esse projeto foi criado para participar do processo seletivo da empresa 4Intelligence.
  
  ## 💻 Como executar
  

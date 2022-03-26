@@ -36,3 +36,11 @@ def seleciona_usuarios():
     usuarios_json = [usuario.to_json() for usuario in usuarios_objetos]
 
     return gera_response(200, "usuarios", usuarios_json)
+
+# Selecionar Individual
+@app.route("/usuario/<id>", methods=["GET"])
+def seleciona_usuario(id):
+    usuario_objeto = Usuario.query.filter_by(id=id).first()
+    usuario_json = usuario_objeto.to_json()
+
+    return gera_response(200, "usuario", usuario_json)
